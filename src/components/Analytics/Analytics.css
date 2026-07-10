@@ -1,0 +1,23 @@
+.analytics{
+    margin-top:40px;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+.chart-container{
+    display:flex;
+    gap:30px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.chart-card{
+    flex:1;
+    min-width:350px;
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.08);
+}
