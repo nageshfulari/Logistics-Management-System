@@ -312,8 +312,9 @@ const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
           borderTop: "1px solid #E5E7EB",
         }}
       >
-        © 2026 LogiTrack • Logistics Management System • Built with React &
-        Node.js
+       LogiTrack v1.0
+Developed by Nagesh Fulari
+2026
       </div>
     </>
   );
