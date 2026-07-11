@@ -4,7 +4,7 @@ const verifyToken = (req, res, next) => {
   // Read Authorization header
   const authHeader = req.header("Authorization");
 
-  console.log("Authorization Header:", authHeader);
+  
   // Check if Authorization header exists
   if (!authHeader) {
     return res.status(401).json({
@@ -23,8 +23,7 @@ const verifyToken = (req, res, next) => {
   }
 
   try {
-    console.log("JWT_SECRET:", process.env.JWT_SECRET);
-console.log("Received Token:", token);
+    
     // Verify JWT using the same secret used while creating it
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 

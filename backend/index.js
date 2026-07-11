@@ -167,8 +167,6 @@ app.post("/login", async (req, res) => {
   }
 );
 
-console.log("JWT_SECRET:", process.env.JWT_SECRET);
-console.log("Generated Token:", token);
 
 // Send success response
 res.status(200).json({
