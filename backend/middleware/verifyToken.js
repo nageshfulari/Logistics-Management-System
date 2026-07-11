@@ -23,8 +23,9 @@ const verifyToken = (req, res, next) => {
   }
 
   try {
+    console.log("Token:", token);
     // Verify JWT using the same secret used while creating it
-    const decoded = jwt.verify(token, "mysecretkey");
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     // Store decoded user information
     req.user = decoded;
@@ -32,9 +33,13 @@ const verifyToken = (req, res, next) => {
     // Continue to the protected route
     next();
   } catch (err) {
-    return res.status(401).json({
-      message: "Invalid Token",
-    });
+  
+  console.log("JWT Verify Error:", err.message);
+
+  return res.status(401).json({
+    message: "Invalid Token",
+  });
+
   }
 };
 

@@ -83,7 +83,7 @@ function OrderTable({
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/orders/${id}`, {
+      await fetch(`${process.env.REACT_APP_API_URL}/orders/${id}`, {
         method: "DELETE",
       });
 

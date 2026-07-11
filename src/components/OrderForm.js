@@ -14,64 +14,77 @@ function OrderForm({ fetchOrders,addActivity }) {
 
   const [errors, setErrors] = useState({});
   const handleSubmit = async () => {
-    const newErrors = {};
+  const newErrors = {};
 
-if (!formData.name.trim()) {
-  newErrors.name = "Customer Name is required";
-}
+  if (!formData.name.trim()) {
+    newErrors.name = "Customer Name is required";
+  }
 
-if (!formData.pickup.trim()) {
-  newErrors.pickup = "Pickup Location is required";
-}
+  if (!formData.pickup.trim()) {
+    newErrors.pickup = "Pickup Location is required";
+  }
 
-if (!formData.delivery.trim()) {
-  newErrors.delivery = "Delivery Location is required";
-}
+  if (!formData.delivery.trim()) {
+    newErrors.delivery = "Delivery Location is required";
+  }
 
-if (!formData.estimatedDelivery) {
-  newErrors.estimatedDelivery = "Select Estimated Delivery Date";
-}
+  if (!formData.estimatedDelivery) {
+    newErrors.estimatedDelivery =
+      "Select Estimated Delivery Date";
+  }
 
-setErrors(newErrors);
+  setErrors(newErrors);
 
-if (Object.keys(newErrors).length > 0) {
-  return;
-}
-    
-    try {
-      const res = await fetch("http://localhost:5000/orders", {
+  if (Object.keys(newErrors).length > 0) {
+    return;
+  }
+
+  try {
+    const token = localStorage.getItem("token");
+
+    const res = await fetch(
+      `${process.env.REACT_APP_API_URL}/orders`,
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
-      });
+      }
+    );
 
-     await res.json();
-      
+    const data = await res.json();
 
-      fetchOrders();
-      toast.success("✅ Shipment Created Successfully");
-      addActivity(
-  `Shipment created - ${formData.name}`,
-  "#3B82F6",
-  "package"
-);
-
-     setFormData({
-  name: "",
-  pickup: "",
-  delivery: "",
-  priority: "Normal",
-  status: "Pending",
-  estimatedDelivery: "",
-});
-    } catch (err) {
-       toast.error("Failed to create shipment");
-
+    if (!res.ok) {
+      toast.error(data.message || "Failed to create shipment");
+      return;
     }
-  };
 
+    await fetchOrders();
+
+    toast.success("✅ Shipment Created Successfully");
+
+    addActivity(
+      `Shipment created - ${formData.name}`,
+      "#3B82F6",
+      "package"
+    );
+
+    setFormData({
+      name: "",
+      pickup: "",
+      delivery: "",
+      priority: "Normal",
+      status: "Pending",
+      estimatedDelivery: "",
+    });
+
+    setErrors({});
+  } catch (err) {
+    toast.error("Server Error. Please try again.");
+  }
+};  
   return (
     <div
       style={{

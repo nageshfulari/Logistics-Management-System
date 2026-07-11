@@ -29,12 +29,15 @@ useEffect(() => {
 
 const handleUpdate = async () => {
   try {
+    const token = localStorage.getItem("token");
+
     const res = await fetch(
-      `http://localhost:5000/orders/${editingOrder._id}`,
+      `${process.env.REACT_APP_API_URL}/orders/${editingOrder._id}`,
       {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(formData),
       }
@@ -42,23 +45,21 @@ const handleUpdate = async () => {
 
     await res.json();
 
-    await res.json();
-    // Refresh table
     await fetchOrders();
+
     toast.success("✏ Shipment Updated");
 
     addActivity(
-  `Shipment updated - ${formData.name}`,
-  "#F59E0B",
-  "edit"
-);
-    
-    // Close popup
+      `Shipment updated - ${formData.name}`,
+      "#F59E0B",
+      "edit"
+    );
+
     setEditingOrder(null);
 
   } catch (err) {
-  toast.error("Failed to update shipment");
-}
+    toast.error("Failed to update shipment");
+  }
 };
   return (
     <div

@@ -21,6 +21,7 @@ import {
 } from "react-icons/fi";
 
 function App() {
+  console.log("API URL:", process.env.REACT_APP_API_URL);
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -42,7 +43,7 @@ function App() {
 
       const token = localStorage.getItem("token");
 
-      const res = await fetch("http://localhost:5000/orders", {
+      const res = await fetch(`$process.env.REACT_APP_API_URL/orders`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
