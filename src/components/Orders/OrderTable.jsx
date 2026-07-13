@@ -16,7 +16,7 @@ function OrderTable({
   const [deleteId, setDeleteId] = useState(null);
   const [sortBy, setSortBy] = useState("Newest");
   const ordersPerPage = 5;
-
+  const isDemo = localStorage.getItem("role") === "demo";
   const filters = ["All", "Pending", "In Transit", "Delivered", "Cancelled"];
 
   const getStatusStyle = (status) => {
@@ -477,7 +477,7 @@ Try another search or create a shipment.
                     >
                       View
                     </button>
-
+                      {!isDemo && (
                     <button
                       onClick={() => {
                        
@@ -496,7 +496,8 @@ Try another search or create a shipment.
                     >
                       Update
                     </button>
-
+                      )}
+                      {!isDemo && (
                     <button
                       onClick={() => setDeleteId(order._id)}
                       style={{
@@ -512,6 +513,7 @@ Try another search or create a shipment.
                     >
                       Delete
                     </button>
+                      )}
                   </div>
                 </td>
               </tr>

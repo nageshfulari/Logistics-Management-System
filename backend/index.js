@@ -7,11 +7,13 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const User = require("./models/User");
 const verifyToken = require("./middleware/verifyToken");
+const verifyAdmin = require("./middleware/verifyAdmin");
 
 const app = express();
 app.use(cors());  
 app.use(express.json());
 
+console.log(process.env.MONGO_URI);
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDb connected"))
     .catch((err) =>console.log(err));
@@ -35,7 +37,11 @@ app.get("/orders", verifyToken, async (req, res) => {
   }
 });
 
-app.post("/orders",verifyToken,async(req,res) =>{
+app.post(
+"/orders",
+verifyToken,
+verifyAdmin,
+async(req,res)=>{
    
   try{
     
@@ -77,7 +83,11 @@ app.post("/orders",verifyToken,async(req,res) =>{
   }
 });
 
-app.put("/orders/:id", verifyToken, async (req, res) => {
+app.put(
+"/orders/:id",
+verifyToken,
+verifyAdmin,
+async(req,res)=>{
   try {
     const updatedOrder = await Order.findByIdAndUpdate(
       req.params.id,
@@ -106,7 +116,11 @@ app.put("/orders/:id", verifyToken, async (req, res) => {
   }
 });
 
-app.delete("/orders/:id",verifyToken, async (req, res) => {
+app.delete(
+"/orders/:id",
+verifyToken,
+verifyAdmin,
+async(req,res)=>{
   try {
 
     const deletedOrder = await Order.findByIdAndDelete(req.params.id);
@@ -130,58 +144,62 @@ app.delete("/orders/:id",verifyToken, async (req, res) => {
 });
 
 app.post("/login", async (req, res) => {
-  
+  console.log("➡️ /login route called");
+
   try {
-    // Read email and password from frontend
     const { email, password } = req.body;
+    console.log("Email received:", email);
 
-    // Find user by email
     const user = await User.findOne({ email });
+    console.log("User found:", user);
 
-    // Check if user exists
     if (!user) {
       return res.status(404).json({
         message: "User not found",
       });
     }
 
-    // Compare entered password with hashed password
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("Password match:", isMatch);
 
-    // If password is incorrect
     if (!isMatch) {
       return res.status(401).json({
         message: "Invalid password",
       });
     }
 
-    // Generate JWT token
     const token = jwt.sign(
-  {
-    id: user._id,
-    email: user.email,
-  },
-  process.env.JWT_SECRET,
-  {
-    expiresIn: "1h",
-  }
-);
+      {
+        id: user._id,
+        email: user.email,
+        role: user.role,
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      }
+    );
 
+    console.log("Sending response:", {
+      user: user.name,
+      role: user.role,
+    });
 
-// Send success response
-res.status(200).json({
-  message: "Login Successful",
-  token: token,
-  user: user.name,
-});
+    res.status(200).json({
+      message: "Login Successful",
+      token,
+      user: user.name,
+      role: user.role,
+    });
+
   } catch (err) {
+    console.log("Login Error:", err);
+
     res.status(500).json({
       message: err.message,
     });
   }
 });
-
-
 app.listen(PORT, () => {
   console.log(`server running on ${PORT}`);
 });

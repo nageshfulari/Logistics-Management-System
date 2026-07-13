@@ -2,7 +2,11 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 
 
-function OrderForm({ fetchOrders,addActivity }) {
+function OrderForm({
+  fetchOrders,
+  addActivity,
+  isDemo,
+}) {
   const [formData, setFormData] = useState({
   name: "",
   pickup: "",
@@ -14,6 +18,11 @@ function OrderForm({ fetchOrders,addActivity }) {
 
   const [errors, setErrors] = useState({});
   const handleSubmit = async () => {
+     if (isDemo) {
+    toast.info("Demo account has view-only access.");
+    return;
+  }
+
   const newErrors = {};
 
   if (!formData.name.trim()) {
@@ -106,6 +115,22 @@ function OrderForm({ fetchOrders,addActivity }) {
 >
   📦 Create Shipment
 </h2>
+{isDemo && (
+  <div
+    style={{
+      background: "#EFF6FF",
+      color: "#1D4ED8",
+      padding: "12px",
+      borderRadius: "8px",
+      marginBottom: "20px",
+      textAlign: "center",
+      fontWeight: "600",
+      border: "1px solid #BFDBFE",
+    }}
+  >
+    👀 Demo Account - View Only Access
+  </div>
+)}
       <label
         style={{
           display: "block",
@@ -343,37 +368,42 @@ function OrderForm({ fetchOrders,addActivity }) {
     {errors.estimatedDelivery}
   </p>
 )}
-      <button
+     <button
   onClick={handleSubmit}
+  disabled={isDemo}
   onMouseEnter={(e) => {
-    e.currentTarget.style.background = "#0056D2";
-    e.currentTarget.style.transform = "translateY(-2px)";
-    e.currentTarget.style.boxShadow =
-      "0 8px 20px rgba(37,99,235,.35)";
+    if (!isDemo) {
+      e.currentTarget.style.background = "#0056D2";
+      e.currentTarget.style.transform = "translateY(-2px)";
+      e.currentTarget.style.boxShadow =
+        "0 8px 20px rgba(37,99,235,.35)";
+    }
   }}
   onMouseLeave={(e) => {
-    e.currentTarget.style.background = "#007BFF";
-    e.currentTarget.style.transform = "translateY(0)";
-    e.currentTarget.style.boxShadow = "none";
+    if (!isDemo) {
+      e.currentTarget.style.background = "#007BFF";
+      e.currentTarget.style.transform = "translateY(0)";
+      e.currentTarget.style.boxShadow = "none";
+    }
   }}
   style={{
     width: "100%",
     padding: "12px",
     marginTop: "10px",
-    backgroundColor: "#007BFF",
+    backgroundColor: isDemo ? "#94A3B8" : "#007BFF",
     color: "white",
     border: "none",
     borderRadius: "6px",
-    cursor: "pointer",
+    cursor: isDemo ? "not-allowed" : "pointer",
     fontSize: "16px",
     fontWeight: "bold",
     transition: "all .3s ease",
+    opacity: isDemo ? 0.7 : 1,
   }}
 >
-  Create Shipment
+  {isDemo ? "Demo Mode (View Only)" : "Create Shipment"}
 </button>
     </div>
   );
 }
-
 export default OrderForm;

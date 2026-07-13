@@ -30,6 +30,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
   const [activities, setActivities] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const role = localStorage.getItem("role");
+  const isDemo = localStorage.getItem("role") === "demo";
 
   useEffect(() => {
     if (isLoggedIn) {
@@ -66,6 +68,7 @@ const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("role");
     setIsLoggedIn(false);
   };
 
@@ -123,6 +126,23 @@ const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
         {/* Navbar */}
         
           <Navbar handleLogout={handleLogout} setSidebarOpen={setSidebarOpen} />
+
+          {isDemo && (
+  <div
+    style={{
+      background: "#FEF3C7",
+      color: "#92400E",
+      padding: "12px",
+      borderRadius: "8px",
+      marginTop: "20px",
+      textAlign: "center",
+      fontWeight: "600",
+    }}
+  >
+    🚀 Demo Mode — You have view-only access.
+    Creating, editing and deleting shipments is disabled.
+  </div>
+)}
         
 
         {/* Welcome Card */}
@@ -232,7 +252,13 @@ const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
         {/* Add Order */}
         <div id="customers">
           <div style={{ marginTop: "40px" }}>
-            <OrderForm fetchOrders={fetchOrders} addActivity={addActivity} />
+            {!isDemo && (
+    <OrderForm
+        fetchOrders={fetchOrders}
+        addActivity={addActivity}
+        isDemo={isDemo}
+    />
+)}
           </div>
         </div>
 
@@ -290,6 +316,7 @@ const res = await fetch(`${process.env.REACT_APP_API_URL}/orders`, {
             setEditingOrder={setEditingOrder}
             fetchOrders={fetchOrders}
             addActivity={addActivity}
+            isDemo={isDemo}
           />
         )}
       </div>
