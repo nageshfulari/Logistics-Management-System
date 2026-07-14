@@ -77,6 +77,8 @@ https://logitrack-backend-kb1x.onrender.com
 ![Dashboard](README-images/dashboard.png)
 ---
 
+![Dashboard](README-images/dashboard2.png)
+
 ### Shipment Management
 
 ![Shipments](README-images/shipments.png)
