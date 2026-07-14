@@ -42,7 +42,7 @@ https://logitrack-backend-kb1x.onrender.com
 - 🔐 JWT Authentication
 - 👤 Admin & Demo User Roles
 - 🔒 Role-Based Access Control (Admin & Demo)
-- - 🚛 Shipment Management (Create, Read, Update & Delete)
+- 🚛 Shipment Management (Create, Read, Update & Delete)
 - 👨‍💼 Admin Dashboard
 - 👀 Demo View-Only Mode
 - 📊 Dashboard Analytics
