@@ -30,8 +30,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
   const [activities, setActivities] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const role = localStorage.getItem("role");
-  const isDemo = localStorage.getItem("role") === "demo";
+ const role = localStorage.getItem("role");
+const isDemo = role === "demo";
 
   useEffect(() => {
     if (isLoggedIn) {
