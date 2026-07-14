@@ -1,4 +1,4 @@
-# 🚚 Logistics Management System
+# 🚚 LogiTrack – Logistics Management System
 
 ![React](https://img.shields.io/badge/React-19-blue?logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)
@@ -7,7 +7,7 @@
 ![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)
 ![Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render)
 
-A modern **Logistics Management System** built using **React, Node.js, Express, MongoDB Atlas, and JWT Authentication**. The application enables administrators to efficiently manage shipments through a secure dashboard while providing a demo account with view-only access for evaluation.
+**LogiTrack** is a modern Logistics Management System built using React, Node.js, Express, MongoDB Atlas, and JWT Authentication. It enables administrators to efficiently manage shipments through a secure dashboard while providing a demo account with view-only access for evaluation.
 
 ---
 ## 📸 Project Preview
