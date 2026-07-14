@@ -1,70 +1,242 @@
-# Getting Started with Create React App
+# 🚚 Logistics Management System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![Node.js](https://img.shields.io/badge/Node.js-Express-green?logo=node.js)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-success?logo=mongodb)
+![JWT](https://img.shields.io/badge/Auth-JWT-orange)
+![Vercel](https://img.shields.io/badge/Frontend-Vercel-black?logo=vercel)
+![Render](https://img.shields.io/badge/Backend-Render-46E3B7?logo=render)
 
-## Available Scripts
+A modern **Logistics Management System** built using **React, Node.js, Express, MongoDB Atlas, and JWT Authentication**. The application enables administrators to efficiently manage shipments through a secure dashboard while providing a demo account with view-only access for evaluation.
 
-In the project directory, you can run:
+---
+## 📸 Project Preview
 
-### `npm start`
+![Dashboard](README-images/dashboard.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🌐 Live Demo
 
-### `npm test`
+**Frontend (Vercel)**  
+https://logistics-management-system-dusky.vercel.app
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Backend API (Render)**  
+https://logitrack-backend-kb1x.onrender.com
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🔑 Demo Credentials
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 👀 Demo Account (View Only)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Email:** demo@logitrack.com
 
-### `npm run eject`
+**Password:** demo123
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+>The demo account is provided for recruiters, faculty, and evaluators to explore the application safely with view-only access.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+---
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## ✨ Features
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 🔐 JWT Authentication
+- 👤 Admin & Demo User Roles
+- 🔒 Role-Based Access Control (Admin & Demo)
+- - 🚛 Shipment Management (Create, Read, Update & Delete)
+- 👨‍💼 Admin Dashboard
+- 👀 Demo View-Only Mode
+- 📊 Dashboard Analytics
+- 📈 Interactive Charts
+- 🔍 Shipment Details
+- 🔔 Toast Notifications
+- 📱 Responsive Design
+- 🎨 Modern UI
+- ☁️ Cloud Deployment
+- 🔒 Protected API Routes
+- ⚡ Fast React Interface
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔒 Security
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- JWT Authentication
+- Password Hashing using bcrypt
+- Protected API Routes
+- Role-Based Authorization
 
-### Code Splitting
+## 📸 Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Login Page
 
-### Analyzing the Bundle Size
+![Login](README-images/login.png)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+---
 
-### Making a Progressive Web App
+### Dashboard
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![Dashboard](README-images/dashboard.png)
+![Dashboard](README-images/dashboard2.png)
+---
 
-### Advanced Configuration
+### Shipment Management
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![Shipments](README-images/shipments.png)
+
+---
+
+### Create Shipment
+
+![Create Shipment](README-images/create-shipment.png)
+
+---
+
+### Demo Mode
+
+![Demo Mode](README-images/demo-mode.png)
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+- React.js
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- React Toastify
+- Recharts
+- React Icons
+
+### Backend
+
+- Node.js
+- Express.js
+- JWT
+- bcrypt
+- REST API
+
+### Database
+
+- MongoDB Atlas
+- Mongoose ODM
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Vercel
+- Render
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## 🏛 Architecture
+
+Frontend (React)
+        │
+ REST API (JWT)
+        │
+Backend (Node.js + Express)
+        │
+MongoDB Atlas
+
+
+## 🏗 Project Structure
+
+```
+logistics-app
+│
+├── backend
+│   ├── middleware
+│   ├── models
+│   ├── routes
+│   ├── index.js
+│   └── package.json
+│
+├── public
+├── src
+│   ├── components
+│   ├── App.js
+│   ├── Login.js
+│   └── ...
+│
+├── README-images
+├── package.json
+└── README.md
+```
+
+---
+
+## ⚙ Installation
+
+### Clone Repository
+
+```bash
+git clone https://github.com/nageshfulari/Logistics-Management-System.git
+```
+
+### Frontend
+
+```bash
+npm install
+npm start
+```
+
+### Backend
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+---
+
+## 🔐 Environment Variables
+
+### Backend (.env)
+
+```env
+PORT=5000
+
+MONGO_URI=your_mongodb_connection_string
+
+JWT_SECRET=your_secret_key
+```
+
+### Frontend (.env)
+
+```env
+REACT_APP_API_URL=http://localhost:5000
+```
+
+---
+
+## 🚀 Future Enhancements
+
+- Email Notifications
+- Real-Time Shipment Tracking
+- Google Maps Integration
+- QR Code Shipment Verification
+- Advanced Analytics Dashboard
+- Multi-User Role Management
+- Export Reports (PDF & Excel)
+
+---
+
+## 👨‍💻 Author
+
+**Nagesh Fulari**
+
+Bachelor of Engineering (Computer Engineering)
+
+GitHub:
+https://github.com/nageshfulari
+
+---
+
+## ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+## 📄 License
+
+This project is developed for educational and portfolio purposes.
